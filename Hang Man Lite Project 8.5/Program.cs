@@ -15,7 +15,7 @@ namespace Hang_Man_Lite_Project_8._5
             string input;
             string input_;   
             List<string> usedLetters = new List<string>() { "" };          
-            List<string> words = new List<string>() {"POTATO", "TREEHOUSE", "GRASS", "SANDWICH"};
+            List<string> words = new List<string>() {"SANDWICH"};
             incorrectGuesses = 0;
             while (!done_)
             {
@@ -84,9 +84,7 @@ namespace Hang_Man_Lite_Project_8._5
                     else
                     {                                                                     
                         for (int i = 0; i < randomWord.Length; i++)
-                        {
-                             //char input1;
-                             //input1 = Convert.ToChar(input);
+                        {                            
                              if (randomWord.IndexOf(randomWord[i]).Equals(input))
                              {
                                  displayWord = displayWord.Remove(randomWord.IndexOf(input), 1);
