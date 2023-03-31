@@ -13,7 +13,7 @@ namespace Hang_Man_Lite_Project_8._5
             string randomWord;
             int incorrectGuesses;
             string input;
-            string input_;           
+            string input_;   
             List<string> usedLetters = new List<string>() { "" };          
             List<string> words = new List<string>() {"POTATO", "TREEHOUSE", "GRASS", "SANDWICH"};
             incorrectGuesses = 0;
@@ -53,12 +53,18 @@ namespace Hang_Man_Lite_Project_8._5
                     else if (incorrectGuesses == 4)
                     {
                         DrawStickMen(4);
-                        Console.WriteLine("Oh no you lost!");                      
-                        Console.ReadLine();                       
-                        done = true;
+                        Console.WriteLine("Oh no you lost!");
+                        Console.WriteLine("Press Enter to Continue:");
+                        Console.ReadLine();
+                        done = true;                      
                     }
                     Console.WriteLine("");
-                    Console.WriteLine("(If you want to quit type /)");
+                    if (displayWord == randomWord)
+                    {
+                        Console.WriteLine("You Win!");
+                        done = true;
+                    }
+                    Console.WriteLine("(If you want to quit type /)");                    
                     Console.WriteLine("Guess a letter:");
                     Console.WriteLine(displayWord);
                     input = Console.ReadLine().ToUpper();                   
@@ -76,12 +82,19 @@ namespace Hang_Man_Lite_Project_8._5
                         usedLetters.Add(input);
                     }
                     else
-                    {  
-                        displayWord = displayWord.Remove(randomWord.IndexOf(input), 1);
-                        displayWord = displayWord.Insert(randomWord.IndexOf(input), input);      
-                        usedLetters.Add(input);
-                    }
-                    
+                    {                                                                     
+                        for (int i = 0; i < randomWord.Length; i++)
+                        {
+                             //char input1;
+                             //input1 = Convert.ToChar(input);
+                             if (randomWord.IndexOf(randomWord[i]).Equals(input))
+                             {
+                                 displayWord = displayWord.Remove(randomWord.IndexOf(input), 1);
+                                 displayWord = displayWord.Insert(randomWord.IndexOf(input), input);
+                             }
+                        }                                            
+                        usedLetters.Add(input);                    
+                    }   
                     Console.WriteLine("");
                     Console.WriteLine("Press Enter to Continue:");
                     Console.ReadLine();
