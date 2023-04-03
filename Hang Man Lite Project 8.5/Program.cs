@@ -13,10 +13,9 @@ namespace Hang_Man_Lite_Project_8._5
             string randomWord;
             int incorrectGuesses;
             string input;
-            string input_;   
+            string input_;  
             List<string> usedLetters = new List<string>() { "" };          
-            List<string> words = new List<string>() {"SANDWICH", "POTATO", "GRASS"};
-            incorrectGuesses = 0;
+            List<string> words = new List<string>() {"POTATO"};    
             while (!done_)
             {
                 incorrectGuesses = 0;
@@ -56,12 +55,15 @@ namespace Hang_Man_Lite_Project_8._5
                         Console.WriteLine("Oh no you lost!");
                         Console.WriteLine("Press Enter to Continue:");
                         Console.ReadLine();
-                        done = true;                      
+                        done = true;
+                        //return;
                     }
                     Console.WriteLine("");
                     if (displayWord == randomWord)
                     {
                         Console.WriteLine("You Win!");
+                        Console.WriteLine("Press Enter to Continue:");
+                        Console.ReadLine();
                         done = true;
                     }
                     Console.WriteLine("(If you want to quit type /)");                    
@@ -81,16 +83,21 @@ namespace Hang_Man_Lite_Project_8._5
                         incorrectGuesses += 1;
                         usedLetters.Add(input);
                     }
-                    else
+                    else if (input == "")
                     {
+                        Console.WriteLine("Invalid Input - Try Again");
+                    }
+                    else
+                    {                  
                         for (int i = 0; i < randomWord.Length; i++)
                         {
                             if (randomWord.IndexOf(randomWord[i]).Equals(input.IndexOf(input[0])))
                             {
                                 displayWord = displayWord.Remove(randomWord.IndexOf(input), 1);
                                 displayWord = displayWord.Insert(randomWord.IndexOf(input), input);
+                                i += 1;
                             }                          
-                        }                                                               
+                        }
                         usedLetters.Add(input);                    
                     }   
                     Console.WriteLine("");
@@ -162,9 +169,11 @@ namespace Hang_Man_Lite_Project_8._5
                 Console.WriteLine(" |   |");
                 Console.WriteLine("/ \\  |");
                 Console.WriteLine(" =========");
-            }
-
-            
+            }  
+            //Notes:
+            //fix double letter problem
+            //fix won and lost messages
+            //add more words after testing
         }
     }
 }
