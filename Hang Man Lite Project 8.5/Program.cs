@@ -15,7 +15,7 @@ namespace Hang_Man_Lite_Project_8._5
             string input;
             string input_;   
             List<string> usedLetters = new List<string>() { "" };          
-            List<string> words = new List<string>() {"SANDWICH"};
+            List<string> words = new List<string>() {"SANDWICH", "POTATO", "GRASS"};
             incorrectGuesses = 0;
             while (!done_)
             {
@@ -82,15 +82,15 @@ namespace Hang_Man_Lite_Project_8._5
                         usedLetters.Add(input);
                     }
                     else
-                    {                                                                     
+                    {
                         for (int i = 0; i < randomWord.Length; i++)
-                        {                            
-                             if (randomWord.IndexOf(randomWord[i]).Equals(input))
-                             {
-                                 displayWord = displayWord.Remove(randomWord.IndexOf(input), 1);
-                                 displayWord = displayWord.Insert(randomWord.IndexOf(input), input);
-                             }
-                        }                                            
+                        {
+                            if (randomWord.IndexOf(randomWord[i]).Equals(input.IndexOf(input[0])))
+                            {
+                                displayWord = displayWord.Remove(randomWord.IndexOf(input), 1);
+                                displayWord = displayWord.Insert(randomWord.IndexOf(input), input);
+                            }                          
+                        }                                                               
                         usedLetters.Add(input);                    
                     }   
                     Console.WriteLine("");
@@ -163,6 +163,8 @@ namespace Hang_Man_Lite_Project_8._5
                 Console.WriteLine("/ \\  |");
                 Console.WriteLine(" =========");
             }
+
+            
         }
     }
 }
